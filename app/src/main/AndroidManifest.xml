@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.github.shadowsocks.plugin.v2ray"
+          package="io.nekohasekai.shadowsocks.plugin.v2ray"
           android:installLocation="internalOnly">
     <uses-feature android:name="android.hardware.touchscreen"
                   android:required="false"/>
@@ -11,7 +11,7 @@
         <provider android:name=".BinaryProvider"
                   android:exported="true"
                   android:directBootAware="true"
-                  android:authorities="com.github.shadowsocks.plugin.v2ray.BinaryProvider"
+                  android:authorities="io.nekohasekai.shadowsocks.plugin.v2ray.BinaryProvider"
                   tools:ignore="ExportedContentProvider">
             <intent-filter>
                 <action android:name="com.github.shadowsocks.plugin.ACTION_NATIVE_PLUGIN"/>

@@ -9,10 +9,10 @@
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
      alt="Get it on F-Droid"
-     height="70">](https://f-droid.org/packages/com.github.shadowsocks.plugin.v2ray/)
+     height="70">](https://f-droid.org/packages/io.nekohasekai.shadowsocks.plugin.v2ray/)
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
      alt="Get it on Google Play"
-     height="70">](https://play.google.com/store/apps/details?id=com.github.shadowsocks.plugin.v2ray)
+     height="70">](https://play.google.com/store/apps/details?id=io.nekohasekai.shadowsocks.plugin.v2ray)
 
 ### PREREQUISITES
 

@@ -1,7 +1,7 @@
-import com.android.build.gradle.internal.api.ApkVariantOutputImpl
 import com.android.build.VariantOutput
+import com.android.build.gradle.internal.api.ApkVariantOutputImpl
 import org.apache.tools.ant.taskdefs.condition.Os
-import java.util.Locale
+import java.util.*
 
 plugins {
     id("com.android.application")
@@ -9,26 +9,27 @@ plugins {
 }
 
 val flavorRegex = "(assemble|generate)\\w*(Release|Debug)".toRegex()
-val currentFlavor get() = gradle.startParameter.taskRequests.toString().let { task ->
-    flavorRegex.find(task)?.groupValues?.get(2)?.toLowerCase(Locale.ROOT) ?: "debug".also {
-        println("Warning: No match found for $task")
+val currentFlavor
+    get() = gradle.startParameter.taskRequests.toString().let { task ->
+        flavorRegex.find(task)?.groupValues?.get(2)?.toLowerCase(Locale.ROOT) ?: "debug".also {
+            println("Warning: No match found for $task")
+        }
     }
-}
 
 val minSdk = 21
 
 android {
     val javaVersion = JavaVersion.VERSION_1_8
-    compileSdkVersion(29)
+    compileSdkVersion(30)
     compileOptions {
         sourceCompatibility = javaVersion
         targetCompatibility = javaVersion
     }
     kotlinOptions.jvmTarget = javaVersion.toString()
     defaultConfig {
-        applicationId = "com.github.shadowsocks.plugin.v2ray"
-        minSdkVersion(minSdk)
-        targetSdkVersion(29)
+        applicationId = "io.nekohasekai.shadowsocks.plugin.v2ray"
+        minSdkVersion(21)
+        targetSdkVersion(30)
         versionCode = 1030300
         versionName = "1.3.3"
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
@@ -71,11 +72,11 @@ tasks.whenTaskAdded {
 dependencies {
     implementation(kotlin("stdlib-jdk8", rootProject.extra.get("kotlinVersion").toString()))
     implementation("androidx.preference:preference:1.1.1")
-    implementation("com.github.shadowsocks:plugin:1.3.4")
+    implementation("com.github.shadowsocks:plugin:2.0.1")
     implementation("com.takisoft.preferencex:preferencex-simplemenu:1.1.0")
-    testImplementation("junit:junit:4.13")
-    androidTestImplementation("androidx.test:runner:1.2.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test:runner:1.3.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
 }
 
 val abiCodes = mapOf("armeabi-v7a" to 1, "arm64-v8a" to 2, "x86" to 3, "x86_64" to 4)

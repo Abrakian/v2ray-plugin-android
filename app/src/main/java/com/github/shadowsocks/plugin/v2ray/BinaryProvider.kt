@@ -18,7 +18,7 @@
  *                                                                             *
  *******************************************************************************/
 
-package com.github.shadowsocks.plugin.v2ray
+package io.nekohasekai.shadowsocks.plugin.v2ray
 
 import android.net.Uri
 import android.os.ParcelFileDescriptor

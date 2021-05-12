@@ -18,7 +18,7 @@
  *                                                                             *
  *******************************************************************************/
 
-package com.github.shadowsocks.plugin.v2ray
+package io.nekohasekai.shadowsocks.plugin.v2ray
 
 import android.os.Bundle
 import android.view.MenuItem
