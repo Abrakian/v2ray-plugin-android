@@ -5,10 +5,11 @@ plugins {
 }
 
 buildscript {
-    val kotlinVersion = "1.3.72"
+    val kotlinVersion = "1.4.32"
     extra.set("kotlinVersion", kotlinVersion)
 
     repositories {
+        mavenCentral()
         google()
     }
     dependencies {
@@ -20,6 +21,7 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenCentral()
         google()
         mavenLocal()
     }

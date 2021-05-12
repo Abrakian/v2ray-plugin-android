@@ -1,1 +1,1 @@
-include(":app")
+include(":app", ":preferencex", ":preferencex-simplemenu")

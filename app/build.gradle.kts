@@ -28,23 +28,40 @@ android {
     kotlinOptions.jvmTarget = javaVersion.toString()
     defaultConfig {
         applicationId = "io.nekohasekai.shadowsocks.plugin.v2ray"
-        minSdkVersion(21)
+        minSdkVersion(23)
         targetSdkVersion(30)
         versionCode = 1030300
-        versionName = "1.3.3"
+        versionName = "1.3.3-git-ddd7ab46b4"
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        create("release") {
+            storeFile = file("release.keystore")
+
+            val properties = Properties()
+            properties.load(project.rootProject.file("local.properties").bufferedReader())
+            storePassword = properties["KEYSTORE_PASS"] as String
+            keyAlias = properties["ALIAS_NAME"] as String
+            keyPassword = properties["ALIAS_PASS"] as String
+        }
     }
     buildTypes {
         getByName("release") {
             isShrinkResources = true
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("release")
+        }
+    }
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
         }
     }
     splits {
         abi {
             isEnable = true
-            isUniversalApk = true
+            isUniversalApk = false
         }
     }
     sourceSets.getByName("main") {
@@ -73,7 +90,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8", rootProject.extra.get("kotlinVersion").toString()))
     implementation("androidx.preference:preference:1.1.1")
     implementation("com.github.shadowsocks:plugin:2.0.1")
-    implementation("com.takisoft.preferencex:preferencex-simplemenu:1.1.0")
+    implementation(project(":preferencex-simplemenu"))
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test:runner:1.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
@@ -85,5 +102,8 @@ if (currentFlavor == "release") android.applicationVariants.all {
         abiCodes[(output as ApkVariantOutputImpl).getFilter(VariantOutput.ABI)]?.let { offset ->
             output.versionCodeOverride = versionCode + offset
         }
+        output.outputFileName = output.outputFileName
+            .replace("app", "v2ray-plugin-$versionName")
+            .replace("-release", "")
     }
 }
